@@ -95,9 +95,9 @@
     .pc-postmark {
       position: absolute;
       right: 96px;
-      top: 48px;
-      width: 140px;
-      height: 140px;
+      top: 52px;
+      width: 104px;
+      height: 104px;
       border: 2px dashed var(--accent);
       border-radius: 50%;
       display: flex;
@@ -107,19 +107,20 @@
       color: var(--accent);
       font-family: 'IBM Plex Mono', monospace;
       text-align: center;
-      transform: rotate(-12deg);
+      transform: rotate(-10deg);
       opacity: .85;
     }
     .pc-postmark span {
-      font-size: 9px;
-      letter-spacing: .2em;
+      font-size: 8px;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      line-height: 1.6;
+      line-height: 1.5;
     }
     .pc-postmark b {
       font-family: 'EB Garamond', serif;
       font-style: italic;
-      font-size: 26px;
+      font-size: 24px;
+      line-height: 1;
       font-weight: 400;
     }
 
@@ -194,26 +195,25 @@
       left: 40px; top: 20px;
       width: 300px; height: 400px;
       transform: rotate(-4deg);
-      background: repeating-linear-gradient(45deg, #d3c6a4 0 2px, #ddd1ad 2px 12px);
-      padding: 14px;
+      background: transparent;
+      padding: 0;
       display: flex;
       align-items: flex-end;
       border: 1px solid var(--ink);
+    }
+    .pc-card-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 38%;
     }
     .pc-card-photo:hover {
       transform: translateY(-6px) rotate(0deg) scale(1.02) !important;
       box-shadow: 0 24px 60px rgba(60,40,20,.20);
     }
-    .pc-card-photo .cap {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      background: var(--paper);
-      padding: 5px 8px;
-      border: 1px solid var(--ink);
-    }
-    .pc-card-photo .pc-tape { top: -12px; left: 30%; }
+    .pc-card-photo .pc-tape { top: -12px; left: 30%; z-index: 2; }
 
     /* Note card */
     .pc-card-note {
@@ -676,7 +676,12 @@
     @media (max-width: 1319px) {
       .pc-root { width: 100%; }
       .pc-header { padding: 56px 56px 32px; }
-      .pc-postmark { right: 56px; top: 40px; }
+      .pc-postmark {
+        right: 56px;
+        top: 46px;
+        width: 94px;
+        height: 94px;
+      }
       .pc-name { font-size: 140px; }
       .pc-hero { margin: 40px 56px 72px; }
       .pc-sec  { padding: 64px 56px; }
@@ -693,30 +698,38 @@
     @media (max-width: 767px) {
       .pc-root { width: 100%; }
       .pc-header { padding: 40px 24px 24px; }
-
-      /* Postmark inline above stamps */
       .pc-postmark {
         position: static;
-        display: inline-flex;
-        width: 100px; height: 100px;
-        margin-bottom: 20px;
-        transform: rotate(-12deg);
-        font-size: 8px;
+        width: 76px;
+        height: 76px;
+        margin: -8px 0 14px auto;
+        border-width: 2px;
+        transform: rotate(-8deg);
+        opacity: .85;
       }
-      .pc-postmark b { font-size: 20px; }
+      .pc-postmark span { font-size: 6.5px; }
+      .pc-postmark b { font-size: 18px; }
+      .pc-stamp-row {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 22px;
+      }
       .pc-name { font-size: 72px; line-height: .9; }
       .pc-byline { font-size: 10px; margin-top: 24px; }
 
-      /* Hero stack */
+      /* Mobile intro collage */
       .pc-hero {
         height: auto;
         margin: 24px 24px 48px;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
+        display: grid;
+        gap: 18px;
       }
       .pc-card {
-        position: static !important;
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
         width: 100% !important;
         height: auto !important;
         transform: none !important;
@@ -726,9 +739,42 @@
         transform: none !important;
       }
       .pc-card-photo {
-        min-height: 180px;
-        background: repeating-linear-gradient(45deg, #d3c6a4 0 2px, #ddd1ad 2px 12px);
+        width: min(100%, 312px) !important;
+        aspect-ratio: 4 / 5;
+        justify-self: center;
+        padding: 0;
+        transform: rotate(-1.5deg) !important;
+        background: transparent;
       }
+      .pc-card-photo img {
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .pc-card-note {
+        padding: 24px 22px;
+        transform: rotate(.7deg) !important;
+      }
+      .pc-card-note h3 { font-size: 30px; }
+      .pc-card-note p { font-size: 17px; line-height: 1.45; }
+      .pc-card-note .sign { font-size: 20px; }
+      .pc-card-facts {
+        padding: 20px;
+        transform: rotate(-.8deg) !important;
+      }
+      .pc-card-facts dl { font-size: 11px; line-height: 1.65; }
+      .pc-card-facts dt {
+        font-size: 9px;
+        margin-top: 8px;
+      }
+      .pc-card-ticket {
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 20px;
+        transform: rotate(.9deg) !important;
+      }
+      .pc-card-ticket .num { font-size: 30px; }
+      .pc-card-ticket .body { font-size: 17px; }
 
       .pc-sec { padding: 48px 24px; }
       .pc-sec-head { flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -778,10 +824,10 @@
          1. HEADER
     ═══════════════════════════════════════════════ -->
     <header class="pc-header">
-      <div class="pc-postmark" aria-hidden="true">
+      <div class="pc-postmark" aria-label="Canterbury postmark updated to today's date">
         <span>Canterbury</span>
-        <b>26</b>
-        <span>May · MMXXVI</span>
+        <b data-postmark-day>Now</b>
+        <span><span data-postmark-month>Live</span> · <span data-postmark-year>Date</span></span>
       </div>
 
       <div class="pc-stamp-row" aria-hidden="true">
@@ -803,9 +849,7 @@
       <!-- Photo card — replace photo.jpg with your image file -->
       <div class="pc-card pc-card-photo" data-hover="portrait">
         <div class="pc-tape" aria-hidden="true"></div>
-        <img src="/asset/aayush.png" alt="Aayush Ale"
-             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
-        <div class="cap">Aayush Ale</div>
+        <img src="/asset/aayush.png" alt="Aayush Ale" />
       </div>
 
       <!-- Note card -->
@@ -1031,6 +1075,42 @@
   </div><!-- /pc-root -->
 
   <script>
+    (function () {
+      var postmark = document.querySelector('.pc-postmark');
+      if (!postmark) return;
+
+      var date = new Date();
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+      function toRoman(num) {
+        var values = [
+          [1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'],
+          [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'],
+          [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']
+        ];
+        var out = '';
+        for (var i = 0; i < values.length; i += 1) {
+          while (num >= values[i][0]) {
+            out += values[i][1];
+            num -= values[i][0];
+          }
+        }
+        return out;
+      }
+
+      postmark.querySelector('[data-postmark-day]').textContent = String(date.getDate()).padStart(2, '0');
+      postmark.querySelector('[data-postmark-month]').textContent = months[date.getMonth()];
+      postmark.querySelector('[data-postmark-year]').textContent = toRoman(date.getFullYear());
+      postmark.setAttribute(
+        'aria-label',
+        'Canterbury postmark for ' + date.toLocaleDateString('en-GB', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        })
+      );
+    })();
+
     (function () {
       var cursor = document.getElementById('pc-cursor');
       if (!cursor) return;
